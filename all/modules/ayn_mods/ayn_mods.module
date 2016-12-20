@@ -1,0 +1,55 @@
+<?php
+/**
+ * Implements hook_block_info().
+ */
+function ayn_mods_block_info() {
+  $blocks['ayn_mods_flickr'] = array(
+    'info' => t('Flickr Photos'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  return $blocks;
+}
+/**
+ * Implements hook_block_view().
+ */
+function ayn_mods_block_view($delta = '') {
+  switch ($delta) {
+    case 'ayn_mods_flickr':
+    	$subject = 'Flickr';
+    	$flickr = flickrapi_phpFlickr();
+    	$query = array(
+				'user_id' => '84424798@N03',
+				'privacy_filter' => 1,
+				'content_type' => 1,
+			);
+		  $photos = $flickr->photos_search($query);
+		  $photos = $photos['photo'];
+		  shuffle($photos);
+		  $content = '<p>';
+		  $i = 0;
+		  foreach ($photos as $p) {
+		  	$i++;
+		  	if ($i > 4) break;
+		  	switch ($i) {
+		  		case 1:
+		  			$style = 'width: 123px; height: 123px; margin-right: 10px; margin-bottom: 10px;';
+		  			break;
+		  		case 2:
+		  			$style = 'width: 123px; height: 123px; margin-bottom: 10px;';
+		  			break;
+		  		case 3:
+		  			$style = 'width: 123px; height: 123px; margin-right: 10px;';
+		  			break;
+		  		case 4:
+		  			$style = 'width: 123px; height: 123px;';
+		  			break;
+		  	}
+		  	$url = 'http://farm' . $p['farm'] . '.staticflickr.com/' . $p['server'] . '/' . $p['id'] . '_' . $p['secret'] . '_q.jpg';
+		  	$content .= '<a href="http://www.flickr.com/photos/84424798@N03/" target="_blank"><img src="' . $url  .'" alt="' . $p['title']  .'" style="' . $style . '" /></a>';
+		  	if ($i == 2) $content .= '</p><p>';
+		  }
+		  $content .= '</p>';
+    break;
+  }
+  return array('subject' => $subject, 'content' => $content);
+}

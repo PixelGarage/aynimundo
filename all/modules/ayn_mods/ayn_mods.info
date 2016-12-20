@@ -1,0 +1,5 @@
+name = Aynimundo Mods
+core = 7.x
+files[] = ayn_mods.module
+
+dependencies[] = flickrapi

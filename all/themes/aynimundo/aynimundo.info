@@ -1,0 +1,17 @@
+name = Aynimundo
+description = Aynimundo main theme
+base theme = boron
+core = 7.x
+engine = phptemplate
+
+regions[header] = Header
+regions[footer] = Footer
+regions[content] = Content
+regions[highlighted] = Highlighted
+regions[sidebar_second] = Sidebar second
+regions[help] = Help
+
+scripts[] = js/jquery.scrollable.js
+scripts[] = js/jquery.cycle.js
+scripts[] = js/app.js
+stylesheets[screen][] = style.css
