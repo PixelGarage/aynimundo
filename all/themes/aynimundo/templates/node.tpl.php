@@ -1,7 +1,12 @@
+<?php
+$block_pictures = module_invoke('views', 'block_view', 'pictures-block');
+
+?>
+
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 	<?php if ($page): ?>
 		<div class="left_image">
-			<?php print render(module_invoke('views', 'block_view', 'pictures-block')); ?>
+			<?php print render($block_pictures); ?>
 		</div>
 		<h1 class="title"><?php echo $title; ?></h1>
 	<?php else: ?>
