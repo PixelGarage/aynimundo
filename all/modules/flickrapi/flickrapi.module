@@ -9,7 +9,7 @@
  * develop a new Flickr-based module.
  */
 
-module_load_include('inc', 'flickapi', 'flickrapi.admin');
+module_load_include('inc', 'flickrapi', 'flickrapi.admin');
 
 /**
  * Implements hook_menu().
