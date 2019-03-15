@@ -42,3 +42,31 @@ function flickrapi_uninstall() {
   module_load_include('module', 'flickrapi', 'flickrapi');
   _flickrapi_oauth_clear();
 }
+
+/**
+ * Implements hook_requirements().
+ */
+function flickrapi_requirements($phase) {
+  $requirements = array();
+
+  // Ensure translations don't break at install time.
+  $t = get_t();
+
+  $requirements['phpflickr_library']['title'] = $t('phpFlickr library');
+
+  if ($phase !== 'install') {
+    // Check if the required library is installed.
+    $library = libraries_detect('phpFlickr');
+    if (!empty($library) && $library['installed'] === TRUE) {
+      $requirements['phpflickr_library']['value'] = $t('phpFlickr library installed');
+    }
+    else {
+      // Set an error stating the required library is not properly installed.
+      $requirements['phpflickr_library']['value'] = $t('Not installed!');
+      $requirements['phpflickr_library']['description'] = $t('The phpFlickr library is not installed properly.');
+      $requirements['phpflickr_library']['severity'] = REQUIREMENT_ERROR;
+    }
+  }
+
+  return $requirements;
+}

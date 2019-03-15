@@ -5,6 +5,10 @@ INSTALLATION:
 2) Place the FlickrAPI module directory in your modules folder (this will
    usually be "sites/all/modules/").
 
+3) Download the phpFlickr library from https://github.com/dan-coulter/phpflickr,
+   rename it to 'phpFlickr', and place it in your libraries folder. This should
+   usually result in sites/all/libraries/phpFlickr.
+
 3) Enable the module.
 
 4) Go to admin/config/media/flickrapi
@@ -16,4 +20,5 @@ INSTALLATION:
    your website using OAuth. You will have 'read' permissions by default.
 
 7) More permissions (write/delete) or disabling caching can be set using the
-   the Advanced Settings. Changing permissions afterwards forces you to re-authenticate.
+   the Advanced Settings. Changing permissions afterwards forces you to
+   re-authenticate.
